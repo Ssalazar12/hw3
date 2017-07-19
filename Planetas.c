@@ -3,8 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-
-#define SIZE 1000 //cantidad de iteraciones, size de arrays
+#define SIZE 10000 //cantidad de iteraciones, size de arrays
 #define PLANETS 10
 double G; //constante gravitacional
 float dt; //intervalo de tiempo
@@ -24,15 +23,15 @@ float m[PLANETS]; //masas
 char *line; // recibe la linea de buffer
 char *part; // recibe las partes de la linea
 FILE *fstream;
-float data[10][8]; //guarda los datos incluyendo el valor en float de los strings
-float numbers[10][7]; //condiciones iniciales
+double data[10][8]; //guarda los datos incluyendo el valor en float de los strings
+double numbers[10][7]; //condiciones iniciales
 char buffer[1000]; //guarda cada linea del fgets
 
 void init(){
 /* inicializa las condiciones iniciales */
 	int k;
 	dt=0.00005;
-	G= 6.67408E-11;
+	G= 4*pow(3.14159265358979323846,2)/100;
 	
 	for(k=0;k<PLANETS;k++){
 		
@@ -104,21 +103,30 @@ void files(){
 	FILE *fx;
 	FILE *fy;
 	FILE *fz;
+	FILE *fm;
 	int i;
+	int j;
 	
 	fx = fopen("resultadosx.csv", "w+");
 	fy = fopen("resultadosy.csv", "w+");	
 	fz = fopen("resultadosz.csv", "w+");	
+	fm= fopen("masas.csv", "w+");
 
 	for(i=0; i<SIZE; i++){
 	fprintf(fx,"%f %f %f %f %f %f %f %f %f %f\n",x[0][i],x[1][i],x[2][i],x[3][i],x[4][i],x[5][i],x[6][i],x[7][i],x[8][i],x[9][i]);	fprintf(fy,"%f %f %f %f %f %f %f %f %f %f\n",y[0][i],y[1][i],y[2][i],y[3][i],y[4][i],y[5][i],y[6][i],y[7][i],y[8][i],y[9][i]);
-	fprintf(fz,"%f %f %f %f %f %f %f %f %f %f\n",z[0][i],z[1][i],z[2][i],z[3][i],z[4][i],z[5][i],z[6][i],z[7][i],z[8][i],z[9][i]);
+	
+	fprintf(fz,"%f %f %f %f %f %f %f %f %f %f\n",z[0][i],z[1][i],z[2][i],z[3][i],z[4][i],z[5][i],z[6][i],z[7][i],z[8][i],z[9][i]);	
+	}
+	
+	for(j=0;j<PLANETS;j++){
+		fprintf(fm, "%f \n", numbers[j][0]);
+	
 	}
 	
 	fclose(fx);
 	fclose(fy);
 	fclose(fz);
-	
+	fclose(fm);	
 }
 
 
@@ -162,6 +170,16 @@ int main()
 		for(j=0;j<7;j++){
 			numbers[i][j]=data[i][j+1];	
 		}	
+	}
+	
+	/*
+	Hace el cambio de uniandes a masas solares 1 mS= 1.98855*10^30 kg= masa del sol = numbers[0][0]
+	*/
+	double masa_sol=numbers[0][0]/100;
+	double mercury=numbers[1][0]/masa_sol;
+	for(i=0;i<10;i++){
+		numbers[i][0]=(double)numbers[i][0]/masa_sol;	
+		printf("%f \n", numbers[i][0]);
 	}
 	
 	/*incializa las variables*/
