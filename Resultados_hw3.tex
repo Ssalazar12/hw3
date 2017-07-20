@@ -1,0 +1,42 @@
+\documentclass[11pt, spanish]{report}
+
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+
+\begin{document}
+
+\section{Ecuacion de onda en 2 dimensiones}
+En este punto de la tarea se resolvió la ecuación de onda en 2 dimensiones para el caso de una caja cerrada y una barrera con una sola rendija. Como condición inicial se definió una perturbación de puntual de -0.5, situada a en la mitad de la caja y a 1/3 del la pared superior de la caja.
+
+\begin{figure}[!ht]
+	\includegraphics[width= \linewidth]{Onda.png}
+	\caption{Evolución de una onda de dos dimensiones}
+	\label{fig:onda}
+\end{figure}
+
+
+En la figura anterior se puede observar 2 gráficas. Una muestra el estado final de la onda, el cual corresponde al estado despues de un tiempo t 60, y la otra gráfica muestra la misma onda pero al haber transcurrido la mitad de este tiempo.
+
+También se incluyó un archivo .mp4 con una animación de la onda. 
+
+\newpage
+
+\section{Sistema solar}
+
+\begin{figure}[!h]
+	\includegraphics[width= \linewidth]{orbitas.png}
+	\caption{Orbitas de los planetas del sistema solar}
+	\label{fig:orbitas}
+\end{figure}
+
+
+El objetivo de este punto fue encontrar las orbitas de los planetas utilizando las ecuaciones de movimiento de newton y calculando la fuerza sobre cada masa con la  siguiente ecuación:
+
+\begin{equation}
+  \vec{F_i}=G m_i\sum_{i\neq j}^N\frac{m_{j}}{r_{ji}^3}(\vec{r_{j}}-\vec{r_{i}})
+\end{equation}
+
+Hay una orbita que se en un plano casi perpendicular a las demás, al comparar la gráfica en tres dimensiones con la proyección en el plano xy se puede ver que esta anomalía depende de las coordenadas en Z. De igual manera se puede apreciar que algunas orbitas no alcanzan a aparecer en la gráfica
+
+\end{document}
